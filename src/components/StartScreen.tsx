@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { content } from "@/lib/content";
+import { useShortScreen } from "@/lib/useShortScreen";
 import { useGame } from "@/state/gameStore";
 import Logo from "./Logo";
 import MusicButton from "./MusicButton";
@@ -27,6 +28,7 @@ export default function StartScreen() {
   const hasProgress = useGame((s) => s.carnet.length > 0 || s.questIndex > 0);
   const reset = useGame((s) => s.reset);
   const [help, setHelp] = useState(false);
+  const short = useShortScreen();
 
   return (
     <div className="absolute inset-0 z-40 flex items-center justify-center bg-navy-deep/25 p-4">
@@ -45,25 +47,25 @@ export default function StartScreen() {
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "tween", duration: 0.4 }}
-        className="px-window flex max-w-2xl flex-col items-center px-8 pt-6 pb-8 text-center"
+        className="px-window flex max-h-full max-w-2xl flex-col items-center overflow-y-auto overscroll-contain px-8 pt-6 pb-8 text-center short:pt-4 short:pb-5"
       >
-        <div className="mb-2 flex items-end gap-4">
-          <Character hero scale={5} />
-          <TerraSprite scale={4} className="anim-bounce" />
+        <div className="mb-2 flex shrink-0 items-end gap-4 short:mb-1">
+          <Character hero scale={short ? 3 : 5} />
+          <TerraSprite scale={short ? 3 : 4} className="anim-bounce" />
         </div>
-        <h1 className="text-6xl font-bold tracking-wide text-sun [text-shadow:4px_4px_0_#A8432A] md:text-7xl">
+        <h1 className="text-6xl font-bold tracking-wide text-sun [text-shadow:4px_4px_0_#A8432A] md:text-7xl short:text-5xl">
           {content.meta.title}
         </h1>
-        <div className="mt-1 mb-4 text-xl text-sea-light">Les métiers verts de Marseille</div>
-        <div className="mb-6 flex items-center gap-3">
-          <p className="text-2xl leading-snug">{PITCH}</p>
+        <div className="mt-1 mb-4 text-xl text-sea-light short:mb-3">Les métiers verts de Marseille</div>
+        <div className="mb-6 flex items-center gap-3 short:mb-4">
+          <p className="text-2xl leading-snug short:text-xl">{PITCH}</p>
           <SpeakButton text={PITCH} dark />
         </div>
         <button type="button" onClick={startAdventure} className="px-btn px-btn-sun px-8 text-2xl">
           {hasProgress ? "Continuer" : "Commencer l'aventure"}
           <PixelIcon name="arrow" flip scale={3} />
         </button>
-        <div className="mt-6 flex gap-5">
+        <div className="mt-6 flex gap-5 short:mt-3">
           <button type="button" onClick={() => setHelp(true)} className="min-h-12 text-lg text-sun underline underline-offset-4">
             Comment jouer ?
           </button>
@@ -88,7 +90,7 @@ export default function StartScreen() {
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
-              className="px-box w-full max-w-xl p-6"
+              className="px-box max-h-full w-full max-w-xl overflow-y-auto overscroll-contain p-6 short:p-4"
               onClick={(e) => e.stopPropagation()}
             >
               <h2 className="mb-4 text-center text-3xl font-bold text-terracotta">Comment jouer ?</h2>
