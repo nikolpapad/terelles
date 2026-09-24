@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { ISLAND_BY_ID, JOBS, QUESTS } from "@/lib/content";
 import { DISTRICT_BY_ID } from "@/lib/marseille";
+import { useShortScreen } from "@/lib/useShortScreen";
 import { useGame } from "@/state/gameStore";
 import { pixelConfetti } from "./JobCard";
 import { Character, PixelIcon, TerraSprite } from "./Pixel";
@@ -15,6 +16,7 @@ export default function EndScreen() {
   const visits = useGame((s) => s.islandVisits);
   const reset = useGame((s) => s.reset);
   const setCarnetOpen = useGame((s) => s.setCarnetOpen);
+  const short = useShortScreen();
 
   const top = Object.entries(visits)
     .sort((a, b) => b[1] - a[1])
@@ -32,27 +34,27 @@ export default function EndScreen() {
         initial={{ scale: 0.85, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: "tween", duration: 0.3 }}
-        className="px-window w-full max-w-xl px-8 py-7 text-center"
+        className="px-window max-h-full w-full max-w-xl overflow-y-auto overscroll-contain px-8 py-7 text-center short:py-3"
       >
-        <div className="mb-2 flex items-end justify-center gap-4">
-          <Character hero scale={5} />
-          <TerraSprite scale={4} className="anim-bounce" />
+        <div className="mb-2 flex items-end justify-center gap-4 short:mb-1">
+          <Character hero scale={short ? 3 : 5} />
+          <TerraSprite scale={short ? 3 : 4} className="anim-bounce" />
         </div>
-        <h1 className="text-6xl font-bold text-sun [text-shadow:4px_4px_0_#A8432A]">Bravo !</h1>
-        <div className="my-5 flex justify-center gap-5">
-          <Stat icon="star" value={`${solved}/${QUESTS.length}`} label="quêtes" />
-          <Stat icon="book" value={`${found}/${JOBS.length}`} label="métiers" />
+        <h1 className="text-6xl font-bold short:text-5xl text-sun [text-shadow:4px_4px_0_#A8432A]">Bravo !</h1>
+        <div className="my-5 flex justify-center gap-5 short:my-3">
+          <Stat icon="star" value={`${solved}/${QUESTS.length}`} label="quêtes" short={short} />
+          <Stat icon="book" value={`${found}/${JOBS.length}`} label="métiers" short={short} />
         </div>
         <div className="mb-3 flex items-center justify-center gap-3">
           <p className="text-xl">Chaque métier peut aider la planète !</p>
           <SpeakButton text={summary} dark />
         </div>
         {top.length > 0 && (
-          <div className="mb-6">
-            <div className="mb-2 text-base text-sea-light">Les lieux que tu as le plus explorés</div>
+          <div className="mb-6 short:mb-4">
+            <div className="mb-2 text-base short:mb-1 text-sea-light">Les lieux que tu as le plus explorés</div>
             <div className="flex flex-wrap justify-center gap-4">
               {top.map((island) => (
-                <div key={island.id} className="px-box flex items-center gap-2 px-4 py-2 text-lg font-bold text-ink">
+                <div key={island.id} className="px-box flex items-center gap-2 px-4 py-2 text-lg short:py-1 font-bold text-ink">
                   <span className="inline-block h-4 w-4" style={{ background: island.color }} />
                   {DISTRICT_BY_ID[island.id].place}
                 </div>
@@ -73,7 +75,7 @@ export default function EndScreen() {
           href="https://www.terrelles.com/"
           target="_blank"
           rel="noreferrer"
-          className="mt-6 inline-block min-h-12 text-lg text-sun underline underline-offset-4"
+          className="mt-6 inline-block min-h-12 short:mt-3 text-lg text-sun underline underline-offset-4"
         >
           Découvrir TERR&apos;ELLES
         </a>
@@ -82,11 +84,11 @@ export default function EndScreen() {
   );
 }
 
-function Stat({ icon, value, label }: { icon: "star" | "book"; value: string; label: string }) {
+function Stat({ icon, value, label, short }: { icon: "star" | "book"; value: string; label: string; short: boolean }) {
   return (
-    <div className="px-box flex min-w-32 flex-col items-center px-5 py-3 text-ink">
-      <PixelIcon name={icon} scale={4} />
-      <span className="mt-1 text-3xl font-bold">{value}</span>
+    <div className="px-box flex min-w-32 flex-col items-center px-5 py-3 text-ink short:py-2">
+      <PixelIcon name={icon} scale={short ? 3 : 4} />
+      <span className="mt-1 text-3xl short:text-2xl font-bold">{value}</span>
       <span className="text-base text-ink/60">{label}</span>
     </div>
   );
