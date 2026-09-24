@@ -607,8 +607,8 @@
       "successText": "Bravo ! Grâce à elle, les déchets sont triés et ne finissent plus dans la mer. 🌊",
       "hints": [
         "Les déchets, il faut les trier…",
-        "Cherche l'île des animaux et de la nature 🐢",
-        "Regarde du côté Déchets & Recyclage sur l'île Écologie."
+        "Va voir du côté des Calanques !",
+        "Cherche le coin Déchets & Recyclage, dans les Calanques."
       ]
     },
     {
@@ -624,8 +624,8 @@
       "successText": "Super ! Elle peut mesurer l'eau de la mer et trouver la pollution. 🔬",
       "hints": [
         "Il faut mesurer l'eau, même tout au fond…",
-        "Des machines peuvent aider ! Cherche l'île des ordis 💻",
-        "Regarde la zone Capteurs & Robots sur l'île Tech."
+        "Des machines peuvent aider ! Va à La Joliette.",
+        "Cherche le coin Capteurs & Robots, à La Joliette."
       ]
     },
     {
@@ -639,8 +639,8 @@
       "successText": "Génial ! Elle branche les bateaux à l'électricité : plus de fumée ! ⚓",
       "hints": [
         "Les bateaux ont besoin d'une énergie plus propre…",
-        "Cherche l'île de l'énergie ⚡",
-        "Regarde la zone Transports & Port."
+        "Va voir au Grand Port !",
+        "Cherche le coin Transports & Port."
       ]
     },
     {
@@ -655,8 +655,8 @@
       "successText": "Bien joué ! Avec des arbres et de l'ombre, la cour devient fraîche. 🌳",
       "hints": [
         "Qu'est-ce qui fait de l'ombre et rafraîchit ?",
-        "Cherche l'île où on imagine des lieux 🎨",
-        "Regarde la zone Maisons & Villes sur l'île Design."
+        "Va au MuCEM, là où on imagine des lieux.",
+        "Cherche le coin Maisons & Villes, au MuCEM."
       ]
     }
   ]

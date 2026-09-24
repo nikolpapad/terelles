@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+/* Mediterranean Marseille palette, 16-bit RPG look (see MARSEILLE_RPG.md). */
+@theme {
+  --color-ink: #2b2140;
+  --color-sea: #2ba2c6;
+  --color-sea-light: #63d8cc;
+  --color-sea-deep: #1e77ae;
+  --color-limestone: #f4efe3;
+  --color-stone: #d8cdb6;
+  --color-sand: #e8c170;
+  --color-terracotta: #d9643a;
+  --color-terracotta-dark: #a8432a;
+  --color-sun: #f7c548;
+  --color-sun-dark: #c9962a;
+  --color-pine: #2f6b3e;
+  --color-leaf: #58b368;
+  --color-navy: #1b3b6f;
+  --color-navy-deep: #132a50;
+  --color-wood: #b07845;
+  --color-wood-dark: #4a2c18;
+
+  --font-sans: var(--font-pixelify), monospace;
+  --font-pixel: var(--font-pixelify), monospace;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-sea-deep);
+  color: var(--color-ink);
+  font-family: var(--font-pixel);
+  -webkit-font-smoothing: none;
+}
+
+button,
+[role="button"],
+a {
+  cursor: pointer;
+}
+
+canvas {
+  image-rendering: pixelated;
+}
+
+/*
+ * Pixel windows: notched corners made with stacked box-shadows,
+ * a light inner bevel, and a hard drop shadow.
+ */
+.px-box,
+.px-window,
+.px-wood,
+.px-scroll {
+  --b: 4px;
+  position: relative;
+  box-shadow:
+    0 calc(var(--b) * -1) 0 0 var(--edge),
+    0 var(--b) 0 0 var(--edge),
+    calc(var(--b) * -1) 0 0 0 var(--edge),
+    var(--b) 0 0 0 var(--edge),
+    inset 0 0 0 var(--b) var(--bevel),
+    calc(var(--b) * 2) calc(var(--b) * 2) 0 0 rgb(20 20 40 / 0.35);
+}
+.px-box {
+  --edge: var(--color-ink);
+  --bevel: #ffffff;
+  background: var(--color-limestone);
+}
+.px-window {
+  --edge: var(--color-limestone);
+  --bevel: #2f5796;
+  background: linear-gradient(180deg, #22498a, var(--color-navy) 60%, var(--color-navy-deep));
+  color: #ffffff;
+}
+.px-wood {
+  --edge: var(--color-wood-dark);
+  --bevel: #c98a55;
+  background: var(--color-wood);
+  color: #fff4dc;
+}
+.px-scroll {
+  --edge: #7a5230;
+  --bevel: #fff6df;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 7px, rgb(160 120 70 / 0.08) 7px 8px),
+    #f7e6c1;
+}
+
+/* Pressable pixel buttons */
+.px-btn {
+  --face: var(--color-terracotta);
+  --dark: var(--color-terracotta-dark);
+  --edge: var(--color-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 52px;
+  padding: 0.5rem 1.3rem;
+  font-family: var(--font-pixel);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: #ffffff;
+  background: var(--face);
+  box-shadow:
+    0 -4px 0 0 var(--edge),
+    0 4px 0 0 var(--edge),
+    -4px 0 0 0 var(--edge),
+    4px 0 0 0 var(--edge),
+    inset 0 -5px 0 0 var(--dark),
+    inset 0 4px 0 0 rgb(255 255 255 / 0.3),
+    6px 8px 0 0 rgb(20 20 40 / 0.35);
+  transition: transform 0.08s steps(2);
+}
+.px-btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.06);
+}
+.px-btn:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 -4px 0 0 var(--edge),
+    0 4px 0 0 var(--edge),
+    -4px 0 0 0 var(--edge),
+    4px 0 0 0 var(--edge),
+    inset 0 5px 0 0 var(--dark);
+}
+.px-btn:focus-visible {
+  outline: 4px dashed var(--color-sun);
+  outline-offset: 8px;
+}
+.px-btn-sun {
+  --face: var(--color-sun);
+  --dark: var(--color-sun-dark);
+  color: var(--color-ink);
+}
+.px-btn-light {
+  --face: var(--color-limestone);
+  --dark: var(--color-stone);
+  color: var(--color-ink);
+}
+.px-btn-navy {
+  --face: #2f5796;
+  --dark: var(--color-navy-deep);
+  --edge: var(--color-limestone);
+}
+.px-btn-wood {
+  --face: var(--color-wood);
+  --dark: #7a4a2a;
+  color: #fff4dc;
+}
+
+/* ---------- motion ---------- */
+@keyframes blink-caret {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes bounce-px {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+@keyframes pop-px {
+  0% {
+    transform: scale(0.2);
+  }
+  60% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.anim-caret {
+  animation: blink-caret 0.8s steps(1) infinite;
+}
+.anim-bounce {
+  animation: bounce-px 0.8s steps(2) infinite;
+}
+.anim-pop {
+  animation: pop-px 0.35s steps(4) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
