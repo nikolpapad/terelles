@@ -1,0 +1,663 @@
+{
+  "meta": {
+    "title": "Terr'Îles",
+    "version": "0.1",
+    "language": "fr",
+    "worldSize": {
+      "width": 1000,
+      "height": 600
+    },
+    "sea": "#DDF1F7"
+  },
+  "islands": [
+    {
+      "id": "tech",
+      "name": "Tech & Numérique",
+      "icon": "💻",
+      "color": "#A8C8F0",
+      "description": "Des machines et des ordis pour aider la planète.",
+      "position": {
+        "x": 220,
+        "y": 170
+      },
+      "zones": [
+        {
+          "id": "data-ia",
+          "name": "Data & IA",
+          "jobs": [
+            {
+              "id": "data-scientist-climat",
+              "title": "Data scientist du climat",
+              "emoji": "📊",
+              "pitch": "Elle utilise l'ordinateur pour comprendre le climat.",
+              "missions": [
+                "📈 Étudier les chiffres de la météo",
+                "🔮 Prévoir les canicules",
+                "🗺️ Faire des cartes du climat"
+              ],
+              "impact": "On peut se préparer avant que le climat change.",
+              "howTo": "Elle aime les maths et a appris l'informatique.",
+              "image": null,
+              "position": {
+                "x": 30,
+                "y": 35
+              }
+            },
+            {
+              "id": "developpeuse-appli-sobre",
+              "title": "Développeuse d'applis sobres",
+              "emoji": "📱",
+              "pitch": "Elle crée des applis qui consomment peu d'énergie.",
+              "missions": [
+                "⌨️ Écrire du code",
+                "🔋 Économiser la batterie",
+                "🌱 Créer des applis pour l'écologie"
+              ],
+              "impact": "Moins d'énergie gaspillée par nos téléphones.",
+              "howTo": "Elle aime les puzzles et a appris à coder.",
+              "image": null,
+              "position": {
+                "x": 65,
+                "y": 28
+              }
+            }
+          ]
+        },
+        {
+          "id": "capteurs-robots",
+          "name": "Capteurs & Robots",
+          "jobs": [
+            {
+              "id": "ingenieure-capteurs",
+              "title": "Ingénieure en capteurs",
+              "emoji": "📡",
+              "pitch": "Elle fabrique des petits appareils qui mesurent la nature.",
+              "missions": [
+                "🌡️ Mesurer l'air et l'eau",
+                "🔌 Construire des capteurs",
+                "🚨 Donner l'alerte en cas de pollution"
+              ],
+              "impact": "On repère vite la pollution pour agir.",
+              "howTo": "Elle aime bricoler et a appris l'électronique.",
+              "image": null,
+              "position": {
+                "x": 35,
+                "y": 70
+              }
+            },
+            {
+              "id": "roboticienne-marine",
+              "title": "Roboticienne sous-marine",
+              "emoji": "🤖",
+              "pitch": "Elle construit des robots qui explorent la mer.",
+              "missions": [
+                "🛠️ Construire des robots nageurs",
+                "🎥 Filmer le fond de la mer",
+                "🧭 Guider les robots à distance"
+              ],
+              "impact": "On observe la mer sans déranger les animaux.",
+              "howTo": "Elle aime les robots et a appris la mécanique.",
+              "image": null,
+              "position": {
+                "x": 70,
+                "y": 65
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ecologie",
+      "name": "Écologie & Biodiversité",
+      "icon": "🐢",
+      "color": "#9ED9B0",
+      "description": "Protéger les animaux, les plantes et la nature.",
+      "position": {
+        "x": 520,
+        "y": 110
+      },
+      "zones": [
+        {
+          "id": "milieux-marins",
+          "name": "Mer & Calanques",
+          "jobs": [
+            {
+              "id": "biologiste-marine",
+              "title": "Biologiste marine",
+              "emoji": "🐙",
+              "pitch": "Elle étudie les poissons et les plantes de la mer.",
+              "missions": [
+                "🤿 Plonger pour observer",
+                "🐟 Compter les poissons",
+                "🌿 Protéger la posidonie"
+              ],
+              "impact": "La vie sous la mer reste en bonne santé.",
+              "howTo": "Elle aime nager et a étudié la biologie.",
+              "image": null,
+              "position": {
+                "x": 28,
+                "y": 35
+              }
+            },
+            {
+              "id": "garde-parc-national",
+              "title": "Garde du Parc national",
+              "emoji": "🥾",
+              "pitch": "Elle veille sur les Calanques tous les jours.",
+              "missions": [
+                "👀 Surveiller les plages et les sentiers",
+                "🗣️ Expliquer les règles aux visiteurs",
+                "🌸 Protéger les plantes rares"
+              ],
+              "impact": "Les Calanques restent belles et sauvages.",
+              "howTo": "Elle aime marcher dehors et a appris la nature.",
+              "image": null,
+              "position": {
+                "x": 62,
+                "y": 30
+              }
+            }
+          ]
+        },
+        {
+          "id": "dechets",
+          "name": "Déchets & Recyclage",
+          "jobs": [
+            {
+              "id": "responsable-tri-recyclage",
+              "title": "Responsable du tri et du recyclage",
+              "emoji": "♻️",
+              "pitch": "Elle organise le tri pour que les déchets revivent.",
+              "missions": [
+                "🗑️ Placer les poubelles de tri",
+                "🏭 Envoyer les déchets au recyclage",
+                "📋 Vérifier que tout est bien trié"
+              ],
+              "impact": "Moins de déchets dans la nature et la mer.",
+              "howTo": "Elle aime organiser et a appris l'environnement.",
+              "image": null,
+              "position": {
+                "x": 35,
+                "y": 72
+              }
+            },
+            {
+              "id": "animatrice-nature",
+              "title": "Animatrice nature",
+              "emoji": "🌿",
+              "pitch": "Elle apprend aux enfants à protéger la nature.",
+              "missions": [
+                "🧒 Faire des ateliers nature",
+                "🧤 Organiser des ramassages de déchets",
+                "🔍 Montrer les petites bêtes"
+              ],
+              "impact": "Tout le monde apprend les bons gestes.",
+              "howTo": "Elle aime expliquer et a appris l'animation.",
+              "image": null,
+              "position": {
+                "x": 70,
+                "y": 68
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "design",
+      "name": "Design & Création",
+      "icon": "🎨",
+      "color": "#F4B6C8",
+      "description": "Imaginer des objets et des lieux qui respectent la planète.",
+      "position": {
+        "x": 820,
+        "y": 190
+      },
+      "zones": [
+        {
+          "id": "product-design",
+          "name": "Objets & Mode",
+          "jobs": [
+            {
+              "id": "ecoconceptrice-objets",
+              "title": "Écoconceptrice d'objets",
+              "emoji": "✏️",
+              "pitch": "Elle invente des objets qui durent longtemps et se réparent.",
+              "missions": [
+                "✏️ Dessiner de nouveaux objets",
+                "♻️ Choisir des matières recyclées",
+                "🔧 Rendre les objets réparables"
+              ],
+              "impact": "Moins d'objets jetés, moins de déchets.",
+              "howTo": "Elle aime dessiner et a appris dans une école de design.",
+              "image": null,
+              "position": {
+                "x": 30,
+                "y": 32
+              }
+            },
+            {
+              "id": "styliste-mode-durable",
+              "title": "Styliste de mode durable",
+              "emoji": "👗",
+              "pitch": "Elle crée des vêtements avec des tissus recyclés.",
+              "missions": [
+                "🧵 Coudre avec de vieux tissus",
+                "✂️ Transformer des vêtements usés",
+                "🎀 Créer des collections"
+              ],
+              "impact": "Moins de vêtements jetés à la poubelle.",
+              "howTo": "Elle aime la mode et a appris la couture.",
+              "image": null,
+              "position": {
+                "x": 68,
+                "y": 30
+              }
+            }
+          ]
+        },
+        {
+          "id": "architecture",
+          "name": "Maisons & Villes",
+          "jobs": [
+            {
+              "id": "architecte-bioclimatique",
+              "title": "Architecte bioclimatique",
+              "emoji": "🏠",
+              "pitch": "Elle dessine des maisons fraîches l'été, chaudes l'hiver.",
+              "missions": [
+                "📐 Dessiner des bâtiments",
+                "☀️ Utiliser le soleil et le vent",
+                "🪵 Choisir des matériaux naturels"
+              ],
+              "impact": "Moins de clim, moins d'énergie gaspillée.",
+              "howTo": "Elle aime dessiner et a appris l'architecture.",
+              "image": null,
+              "position": {
+                "x": 33,
+                "y": 70
+              }
+            },
+            {
+              "id": "paysagiste-urbaine",
+              "title": "Paysagiste urbaine",
+              "emoji": "🌳",
+              "pitch": "Elle met des arbres et des jardins dans la ville.",
+              "missions": [
+                "🌳 Planter des arbres dans la ville",
+                "🏫 Transformer les cours d'école",
+                "💧 Créer des jardins qui gardent l'eau"
+              ],
+              "impact": "La ville est plus fraîche et plus verte.",
+              "howTo": "Elle aime les plantes et a appris le paysage.",
+              "image": null,
+              "position": {
+                "x": 68,
+                "y": 68
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "energie",
+      "name": "Énergie & Industrie",
+      "icon": "⚡",
+      "color": "#FFD98A",
+      "description": "Produire de l'énergie propre et fabriquer mieux.",
+      "position": {
+        "x": 180,
+        "y": 430
+      },
+      "zones": [
+        {
+          "id": "renouvelables",
+          "name": "Énergies renouvelables",
+          "jobs": [
+            {
+              "id": "ingenieure-eolien-mer",
+              "title": "Ingénieure en éolien en mer",
+              "emoji": "🌬️",
+              "pitch": "Elle installe des éoliennes qui flottent sur la mer.",
+              "missions": [
+                "🌊 Choisir où mettre les éoliennes",
+                "🔩 Surveiller leur construction",
+                "⚡ Envoyer l'électricité à la ville"
+              ],
+              "impact": "De l'électricité grâce au mistral, sans pollution.",
+              "howTo": "Elle aime les grands projets et a appris l'ingénierie.",
+              "image": null,
+              "position": {
+                "x": 30,
+                "y": 35
+              }
+            },
+            {
+              "id": "installatrice-solaire",
+              "title": "Installatrice de panneaux solaires",
+              "emoji": "☀️",
+              "pitch": "Elle pose des panneaux solaires sur les toits.",
+              "missions": [
+                "🪜 Monter sur les toits",
+                "🔧 Installer les panneaux",
+                "🔌 Brancher l'électricité"
+              ],
+              "impact": "Le soleil du Sud devient de l'électricité propre.",
+              "howTo": "Elle aime travailler dehors et a appris l'électricité.",
+              "image": null,
+              "position": {
+                "x": 68,
+                "y": 32
+              }
+            }
+          ]
+        },
+        {
+          "id": "mobilite",
+          "name": "Transports & Port",
+          "jobs": [
+            {
+              "id": "ingenieure-bateaux-propres",
+              "title": "Ingénieure des bateaux propres",
+              "emoji": "⚓",
+              "pitch": "Elle aide les gros bateaux à moins polluer au port.",
+              "missions": [
+                "🔌 Brancher les bateaux à l'électricité",
+                "🚢 Inventer des moteurs plus propres",
+                "🌫️ Réduire la fumée au port"
+              ],
+              "impact": "Un air plus pur pour les gens qui vivent près du port.",
+              "howTo": "Elle aime les bateaux et a appris l'ingénierie.",
+              "image": null,
+              "position": {
+                "x": 32,
+                "y": 70
+              }
+            },
+            {
+              "id": "urbaniste-mobilite",
+              "title": "Urbaniste des transports",
+              "emoji": "🚲",
+              "pitch": "Elle imagine des villes où l'on bouge sans polluer.",
+              "missions": [
+                "🚲 Créer des pistes cyclables",
+                "🚋 Organiser bus et tramways",
+                "🚶 Rendre les rues sûres à pied"
+              ],
+              "impact": "Moins de voitures, moins de pollution.",
+              "howTo": "Elle aime la ville et a appris l'urbanisme.",
+              "image": null,
+              "position": {
+                "x": 68,
+                "y": 68
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "agri",
+      "name": "Agriculture & Alimentation",
+      "icon": "🥕",
+      "color": "#F7C59F",
+      "description": "Cultiver, cuisiner et prendre soin de l'eau.",
+      "position": {
+        "x": 500,
+        "y": 460
+      },
+      "zones": [
+        {
+          "id": "agriculture",
+          "name": "Terre & Eau",
+          "jobs": [
+            {
+              "id": "maraichere-bio",
+              "title": "Maraîchère bio",
+              "emoji": "🥕",
+              "pitch": "Elle fait pousser des légumes sans produits chimiques.",
+              "missions": [
+                "🌱 Planter les graines",
+                "🐞 Protéger les plantes avec les insectes",
+                "🧺 Vendre au marché"
+              ],
+              "impact": "Des légumes sains et une terre vivante.",
+              "howTo": "Elle aime la terre et a appris l'agriculture.",
+              "image": null,
+              "position": {
+                "x": 30,
+                "y": 33
+              }
+            },
+            {
+              "id": "hydrologue",
+              "title": "Hydrologue, gardienne de l'eau",
+              "emoji": "💧",
+              "pitch": "Elle veille sur l'eau des rivières et des nappes.",
+              "missions": [
+                "🧪 Tester la qualité de l'eau",
+                "🏞️ Surveiller les rivières",
+                "🚰 Éviter de gaspiller l'eau"
+              ],
+              "impact": "Assez d'eau propre, même en été.",
+              "howTo": "Elle aime les sciences et a appris la géologie.",
+              "image": null,
+              "position": {
+                "x": 68,
+                "y": 35
+              }
+            }
+          ]
+        },
+        {
+          "id": "alimentation",
+          "name": "Cuisine & Abeilles",
+          "jobs": [
+            {
+              "id": "cheffe-anti-gaspi",
+              "title": "Cheffe anti-gaspi",
+              "emoji": "🍲",
+              "pitch": "Elle cuisine de bons plats sans rien jeter.",
+              "missions": [
+                "🥖 Cuisiner les restes",
+                "🍅 Choisir des produits locaux",
+                "🍽️ Nourrir les cantines"
+              ],
+              "impact": "Moins de nourriture jetée à la poubelle.",
+              "howTo": "Elle aime cuisiner et a appris dans une école de cuisine.",
+              "image": null,
+              "position": {
+                "x": 32,
+                "y": 70
+              }
+            },
+            {
+              "id": "apicultrice",
+              "title": "Apicultrice",
+              "emoji": "🐝",
+              "pitch": "Elle prend soin des abeilles et récolte le miel.",
+              "missions": [
+                "🏠 Installer des ruches",
+                "🌼 Planter des fleurs pour les abeilles",
+                "🍯 Récolter le miel"
+              ],
+              "impact": "Les abeilles aident les fleurs et les fruits à pousser.",
+              "howTo": "Elle aime les insectes et a appris l'apiculture.",
+              "image": null,
+              "position": {
+                "x": 68,
+                "y": 68
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "culture",
+      "name": "Culture & Médias",
+      "icon": "🎤",
+      "color": "#C9B6F0",
+      "description": "Raconter, créer et faire la fête sans abîmer la planète.",
+      "position": {
+        "x": 810,
+        "y": 440
+      },
+      "zones": [
+        {
+          "id": "evenements",
+          "name": "Concerts & Spectacles",
+          "jobs": [
+            {
+              "id": "organisatrice-evenements-verts",
+              "title": "Organisatrice de concerts verts",
+              "emoji": "🎤",
+              "pitch": "Elle organise des concerts et festivals écolos.",
+              "missions": [
+                "🥤 Remplacer le plastique par des gobelets lavables",
+                "🚌 Aider le public à venir sans voiture",
+                "♻️ Trier les déchets du festival"
+              ],
+              "impact": "La fête sans laisser de déchets derrière.",
+              "howTo": "Elle aime la musique et a appris l'événementiel.",
+              "image": null,
+              "position": {
+                "x": 30,
+                "y": 33
+              }
+            },
+            {
+              "id": "decoratrice-spectacles-recup",
+              "title": "Décoratrice de spectacles en récup",
+              "emoji": "🎭",
+              "pitch": "Elle fabrique des décors avec des objets récupérés.",
+              "missions": [
+                "🪚 Construire des décors",
+                "📦 Récupérer du bois et du carton",
+                "🎨 Peindre et transformer"
+              ],
+              "impact": "Les décors ne finissent pas à la poubelle.",
+              "howTo": "Elle aime bricoler et a appris les arts.",
+              "image": null,
+              "position": {
+                "x": 68,
+                "y": 32
+              }
+            }
+          ]
+        },
+        {
+          "id": "medias",
+          "name": "Journaux & Dessins",
+          "jobs": [
+            {
+              "id": "journaliste-environnement",
+              "title": "Journaliste environnement",
+              "emoji": "📰",
+              "pitch": "Elle raconte ce qui arrive à la planète.",
+              "missions": [
+                "🎙️ Interviewer des gens",
+                "🔎 Enquêter sur la pollution",
+                "📺 Faire des vidéos et articles"
+              ],
+              "impact": "Tout le monde comprend ce qui se passe.",
+              "howTo": "Elle aime écrire et a appris le journalisme.",
+              "image": null,
+              "position": {
+                "x": 32,
+                "y": 70
+              }
+            },
+            {
+              "id": "illustratrice-planete",
+              "title": "Illustratrice pour la planète",
+              "emoji": "🖍️",
+              "pitch": "Elle dessine pour expliquer l'écologie à tous.",
+              "missions": [
+                "🖍️ Dessiner des affiches",
+                "📚 Illustrer des livres",
+                "🖼️ Faire des BD sur la nature"
+              ],
+              "impact": "Les dessins donnent envie de protéger la nature.",
+              "howTo": "Elle aime dessiner et a appris l'illustration.",
+              "image": null,
+              "position": {
+                "x": 68,
+                "y": 68
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "quests": [
+    {
+      "id": "q1",
+      "emoji": "🏖️",
+      "text": "Oh non ! La plage des Calanques est pleine de plastique. Qui peut aider ?",
+      "answers": [
+        "responsable-tri-recyclage",
+        "animatrice-nature",
+        "ecoconceptrice-objets"
+      ],
+      "targetIsland": "ecologie",
+      "successText": "Bravo ! Grâce à elle, les déchets sont triés et ne finissent plus dans la mer. 🌊",
+      "hints": [
+        "Les déchets, il faut les trier…",
+        "Cherche l'île des animaux et de la nature 🐢",
+        "Regarde du côté Déchets & Recyclage sur l'île Écologie."
+      ]
+    },
+    {
+      "id": "q2",
+      "emoji": "🐟",
+      "text": "Les poissons de la mer sont malades. Personne ne sait si l'eau est propre !",
+      "answers": [
+        "ingenieure-capteurs",
+        "roboticienne-marine",
+        "biologiste-marine"
+      ],
+      "targetIsland": "tech",
+      "successText": "Super ! Elle peut mesurer l'eau de la mer et trouver la pollution. 🔬",
+      "hints": [
+        "Il faut mesurer l'eau, même tout au fond…",
+        "Des machines peuvent aider ! Cherche l'île des ordis 💻",
+        "Regarde la zone Capteurs & Robots sur l'île Tech."
+      ]
+    },
+    {
+      "id": "q3",
+      "emoji": "🚢",
+      "text": "Au port de Marseille, les gros bateaux font beaucoup de fumée. Qui peut aider ?",
+      "answers": [
+        "ingenieure-bateaux-propres"
+      ],
+      "targetIsland": "energie",
+      "successText": "Génial ! Elle branche les bateaux à l'électricité : plus de fumée ! ⚓",
+      "hints": [
+        "Les bateaux ont besoin d'une énergie plus propre…",
+        "Cherche l'île de l'énergie ⚡",
+        "Regarde la zone Transports & Port."
+      ]
+    },
+    {
+      "id": "q4",
+      "emoji": "🥵",
+      "text": "C'est la canicule ! Dans la cour de l'école, il fait bien trop chaud.",
+      "answers": [
+        "paysagiste-urbaine",
+        "architecte-bioclimatique"
+      ],
+      "targetIsland": "design",
+      "successText": "Bien joué ! Avec des arbres et de l'ombre, la cour devient fraîche. 🌳",
+      "hints": [
+        "Qu'est-ce qui fait de l'ombre et rafraîchit ?",
+        "Cherche l'île où on imagine des lieux 🎨",
+        "Regarde la zone Maisons & Villes sur l'île Design."
+      ]
+    }
+  ]
+}
