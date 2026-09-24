@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Laptop-height screens: panels tighten up so their content fits. */
+@custom-variant short (@media (max-height: 820px));
+
 /* Mediterranean Marseille palette, 16-bit RPG look (see MARSEILLE_RPG.md). */
 @theme {
   --color-ink: #2b2140;
@@ -49,45 +52,48 @@ canvas {
 
 /*
  * Pixel windows: notched corners made with stacked box-shadows,
- * a light inner bevel, and a hard drop shadow.
+ * a light inner bevel, and a hard drop shadow. They live in the components
+ * layer so utilities (fixed, absolute…) can override them.
  */
-.px-box,
-.px-window,
-.px-wood,
-.px-scroll {
-  --b: 4px;
-  position: relative;
-  box-shadow:
-    0 calc(var(--b) * -1) 0 0 var(--edge),
-    0 var(--b) 0 0 var(--edge),
-    calc(var(--b) * -1) 0 0 0 var(--edge),
-    var(--b) 0 0 0 var(--edge),
-    inset 0 0 0 var(--b) var(--bevel),
-    calc(var(--b) * 2) calc(var(--b) * 2) 0 0 rgb(20 20 40 / 0.35);
-}
-.px-box {
-  --edge: var(--color-ink);
-  --bevel: #ffffff;
-  background: var(--color-limestone);
-}
-.px-window {
-  --edge: var(--color-limestone);
-  --bevel: #2f5796;
-  background: linear-gradient(180deg, #22498a, var(--color-navy) 60%, var(--color-navy-deep));
-  color: #ffffff;
-}
-.px-wood {
-  --edge: var(--color-wood-dark);
-  --bevel: #c98a55;
-  background: var(--color-wood);
-  color: #fff4dc;
-}
-.px-scroll {
-  --edge: #7a5230;
-  --bevel: #fff6df;
-  background:
-    repeating-linear-gradient(180deg, transparent 0 7px, rgb(160 120 70 / 0.08) 7px 8px),
-    #f7e6c1;
+@layer components {
+  .px-box,
+  .px-window,
+  .px-wood,
+  .px-scroll {
+    --b: 4px;
+    position: relative;
+    box-shadow:
+      0 calc(var(--b) * -1) 0 0 var(--edge),
+      0 var(--b) 0 0 var(--edge),
+      calc(var(--b) * -1) 0 0 0 var(--edge),
+      var(--b) 0 0 0 var(--edge),
+      inset 0 0 0 var(--b) var(--bevel),
+      calc(var(--b) * 2) calc(var(--b) * 2) 0 0 rgb(20 20 40 / 0.35);
+  }
+  .px-box {
+    --edge: var(--color-ink);
+    --bevel: #ffffff;
+    background: var(--color-limestone);
+  }
+  .px-window {
+    --edge: var(--color-limestone);
+    --bevel: #2f5796;
+    background: linear-gradient(180deg, #22498a, var(--color-navy) 60%, var(--color-navy-deep));
+    color: #ffffff;
+  }
+  .px-wood {
+    --edge: var(--color-wood-dark);
+    --bevel: #c98a55;
+    background: var(--color-wood);
+    color: #fff4dc;
+  }
+  .px-scroll {
+    --edge: #7a5230;
+    --bevel: #fff6df;
+    background:
+      repeating-linear-gradient(180deg, transparent 0 7px, rgb(160 120 70 / 0.08) 7px 8px),
+      #f7e6c1;
+  }
 }
 
 /* Pressable pixel buttons */

@@ -24,6 +24,8 @@ type Hit =
 type Cam = { x: number; y: number; z: number };
 
 const TOP_PAD = 92;
+/** fitZ of the reference 1920×1080 screen: zoom levels and labels are tuned for it. */
+const REF_FIT = 0.98;
 const TALK_RANGE = 30;
 const MINI_W = 208;
 const MINI_H = 130;
@@ -94,6 +96,8 @@ export class MapEngine {
   private fitZ = 1;
   private L2 = 1.5;
   private L3 = 2.6;
+  /** Scale of the canvas labels relative to the reference screen. */
+  private ui = 1;
   private cam: Cam = { x: MAP_W / 2, y: MAP_H / 2, z: 1 };
   private target: Cam | null = null;
   /** Smoothed horizontal offset that keeps the map clear of the job panel. */
@@ -179,8 +183,12 @@ export class MapEngine {
     this.canvas.width = Math.round(r.width * this.dpr);
     this.canvas.height = Math.round(r.height * this.dpr);
     this.fitZ = Math.min(this.W / MAP_W, (this.H - TOP_PAD - 8) / MAP_H);
-    this.L2 = Math.max(1.5, this.fitZ * 1.9);
-    this.L3 = Math.max(2.6, this.fitZ * 3.4);
+    // Zoom levels are relative to the fitted map so every screen shows the same
+    // area at each level. Phones keep a floor, or streets would be unreadable.
+    const phone = this.W < 768;
+    this.L2 = Math.max(this.fitZ * 1.9, phone ? 1.5 : 0);
+    this.L3 = Math.max(this.fitZ * 3.4, phone ? 2.6 : 0);
+    this.ui = phone ? 1 : clamp(this.fitZ / REF_FIT, 0.6, 1.6);
     this.cam.z = clamp(this.cam.z, this.fitZ, this.maxZ);
   }
 
@@ -231,6 +239,11 @@ export class MapEngine {
   private toScreen(wx: number, wy: number) {
     const vc = this.vc;
     return { x: (wx - this.cam.x) * this.cam.z + vc.x, y: (wy - this.cam.y) * this.cam.z + vc.y };
+  }
+  /** Screen point in the label layer's coordinates (screen px / ui). */
+  private toUi(wx: number, wy: number) {
+    const p = this.toScreen(wx, wy);
+    return { x: p.x / this.ui, y: p.y / this.ui };
   }
   private toWorld(sx: number, sy: number) {
     const vc = this.vc;
@@ -356,7 +369,9 @@ export class MapEngine {
       if (best) return { kind: "npc", id: best.id };
       return { kind: "ground", x, y };
     }
-    const label = [...this.labelRects].reverse().find((r) => sx >= r.x && sx <= r.x + r.w && sy >= r.y && sy <= r.y + r.h);
+    const ux = sx / this.ui;
+    const uy = sy / this.ui;
+    const label = [...this.labelRects].reverse().find((r) => ux >= r.x && ux <= r.x + r.w && uy >= r.y && uy <= r.y + r.h);
     if (label) return { kind: label.kind, id: label.id };
     if (z >= this.L2 * 0.9) {
       const zone = ZONES.find((zn) => inRect(zn.box, x, y));
@@ -679,13 +694,15 @@ export class MapEngine {
 
     this.drawSky(inView, 1 - ss(this.fitZ * 1.2, this.L2, z));
 
-    // ---- screen-space UI
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // ---- screen-space labels, scaled with the screen like the map
+    ctx.setTransform(dpr * this.ui, 0, 0, dpr * this.ui, 0, 0);
     this.labelRects = [];
     if (a1 > 0.02 || a2 > 0.02) this.drawLandmarkLabels(Math.max(a1, a2 * 0.8) * (1 - a3));
     if (a1 > 0.02) this.drawDistrictLabels(a1, hl);
     if (a2 > 0.02) this.drawZoneLabels(a2 * (1 - a3 * 0.5));
     if (a3 > 0.5) this.drawNpcLabels();
+    // the minimap stays in plain screen px: its hit test uses them
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (this.interactive) this.drawMinimap();
   }
 
@@ -1071,7 +1088,7 @@ export class MapEngine {
     if (alpha < 0.02) return;
     this.ctx.globalAlpha = alpha;
     for (const l of LANDMARKS) {
-      const p = this.toScreen(l.x, l.y);
+      const p = this.toUi(l.x, l.y);
       this.text(l.name, p.x + 1, p.y + 1, 14, "rgba(43,33,64,0.8)", 600);
       this.text(l.name, p.x, p.y, 14, C.white, 600);
     }
@@ -1083,7 +1100,7 @@ export class MapEngine {
     for (const d of DISTRICTS) {
       const island = ISLAND_BY_ID[d.id];
       const hovered = this.hover?.kind === "district" && this.hover.id === d.id;
-      const p = this.toScreen(d.box.x + d.box.w / 2, d.box.y + d.box.h / 2);
+      const p = this.toUi(d.box.x + d.box.w / 2, d.box.y + d.box.h / 2);
       ctx.font = `700 20px ${this.font}`;
       const w1 = ctx.measureText(d.place).width;
       ctx.font = `600 14px ${this.font}`;
@@ -1112,7 +1129,7 @@ export class MapEngine {
     ctx.globalAlpha = alpha;
     for (const zn of ZONES) {
       const hovered = this.hover?.kind === "zone" && this.hover.id === zn.id;
-      const p = this.toScreen(zn.box.x + zn.box.w / 2, zn.box.y);
+      const p = this.toUi(zn.box.x + zn.box.w / 2, zn.box.y);
       ctx.font = `700 17px ${this.font}`;
       const w = ctx.measureText(zn.name).width + 28;
       const h = 34;
@@ -1140,7 +1157,7 @@ export class MapEngine {
       if (!job || shown.has(job) || s.selectedJobId === job.id) continue;
       shown.add(job);
       const p = jobPos(job);
-      const sp = this.toScreen(p.x, p.y - CHAR_H - 22);
+      const sp = this.toUi(p.x, p.y - CHAR_H - 22);
       const label = job === hovered ? job.title : "Espace : parler";
       this.ctx.font = `700 16px ${this.font}`;
       const w = this.ctx.measureText(label).width + 24;

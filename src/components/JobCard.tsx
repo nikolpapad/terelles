@@ -61,15 +61,29 @@ function CardPanel({ jobId }: { jobId: string }) {
       role="dialog"
       aria-label={job.title}
     >
-      <div className="flex-1 overflow-y-auto p-4">
-        <div className="mb-2 flex flex-wrap items-center gap-1.5 text-base font-semibold text-ink/70">
-          <span className="inline-block h-3 w-3" style={{ background: island.color }} />
-          <span>{place}</span>
-          <span>›</span>
-          <span>{job.zoneName}</span>
+      <header
+        className="flex shrink-0 items-center justify-between gap-3 border-b-4 border-ink/15 px-4 py-3 short:py-2"
+        style={{ background: `color-mix(in srgb, ${island.color} 30%, var(--color-limestone))` }}
+      >
+        <div className="flex min-w-0 items-center gap-1.5 bg-limestone px-3 py-1 text-base font-semibold text-ink/80 short:text-sm">
+          <span className="inline-block h-3 w-3 shrink-0" style={{ background: island.color }} />
+          <span className="truncate">
+            {place} › {job.zoneName}
+          </span>
         </div>
+        <button
+          type="button"
+          className="px-btn px-btn-light h-11 min-h-0 w-11 shrink-0 !p-0 text-xl"
+          onClick={closeCard}
+          aria-label="Fermer la fiche"
+        >
+          X
+        </button>
+      </header>
 
-        <div className="px-window relative mb-5 h-44 overflow-hidden">
+      <div className="flex-1 overflow-y-auto p-4 short:p-3">
+
+        <div className="px-window relative mb-5 h-44 overflow-hidden short:mb-3 short:h-28">
           <JobScene jobId={job.id} />
           <AnimatePresence>
             {solvedNow && (
@@ -85,39 +99,47 @@ function CardPanel({ jobId }: { jobId: string }) {
           </AnimatePresence>
         </div>
 
-        <h2 className="mb-1 text-3xl leading-tight font-bold">{job.title}</h2>
+        <h2 className="mb-1 text-3xl leading-tight font-bold short:text-2xl">{job.title}</h2>
         <div
           className="mb-3 h-1.5 w-24"
           style={{ background: `linear-gradient(90deg, ${island.color}, ${shade(island.color, -0.3)})` }}
         />
-        <div className="mb-4 flex items-start gap-3">
-          <p className="flex-1 pt-1 text-xl leading-snug">{pitch}</p>
+        <div className="mb-4 flex items-start gap-3 short:mb-3">
+          <p className="flex-1 pt-1 text-xl leading-snug short:text-lg">{pitch}</p>
           <SpeakButton text={`${job.title}. ${pitch}`} />
         </div>
 
         {cardFrom === "landing" && <GuideBubble />}
 
         <Section icon="hammer" title="Ce qu'elle fait">
-          <ul className="space-y-2">
+          <ul className="space-y-2 short:space-y-1">
             {job.missions.map((m) => (
-              <li key={m} className="flex items-center gap-2 text-lg">
-                <span className="h-2.5 w-2.5 shrink-0" style={{ background: shade(island.color, -0.3) }} />
+              <li
+                key={m}
+                className="flex items-center gap-3 border-2 border-ink/10 bg-white px-2 py-1.5 text-lg short:py-1 short:text-base"
+              >
+                <span
+                  className="flex h-7 w-7 shrink-0 items-center justify-center"
+                  style={{ background: `color-mix(in srgb, ${island.color} 30%, white)` }}
+                >
+                  <span className="h-2.5 w-2.5" style={{ background: shade(island.color, -0.3) }} />
+                </span>
                 {noEmoji(m)}
               </li>
             ))}
           </ul>
         </Section>
 
-        <Section icon="globe" title="Pourquoi c'est bon pour la planète">
-          <p className="text-lg">{noEmoji(job.impact)}</p>
+        <Section icon="globe" title="Pourquoi c'est bon pour la planète" tone="leaf">
+          <p className="text-lg short:text-base">{noEmoji(job.impact)}</p>
         </Section>
 
-        <Section icon="bag" title="Pour faire ce métier">
-          <p className="text-lg">{noEmoji(job.howTo)}</p>
+        <Section icon="bag" title="Pour faire ce métier" tone="sun">
+          <p className="text-lg short:text-base">{noEmoji(job.howTo)}</p>
         </Section>
       </div>
 
-      <div className="flex flex-wrap gap-4 border-t-4 border-dashed border-ink/15 p-4">
+      <div className="flex flex-wrap gap-4 border-t-4 border-dashed border-ink/15 p-4 short:p-3">
         <button type="button" className="px-btn px-btn-light" onClick={closeCard}>
           Fermer
         </button>
@@ -139,19 +161,32 @@ function CardPanel({ jobId }: { jobId: string }) {
   );
 }
 
+const TONES = {
+  plain: { box: "bg-white/60", title: "text-ink/70" },
+  leaf: { box: "bg-leaf/20", title: "text-pine" },
+  sun: { box: "bg-sun/25", title: "text-wood-dark" },
+};
+
 function Section({
   icon,
   title,
+  tone = "plain",
   children,
 }: {
   icon: "hammer" | "globe" | "bag";
   title: string;
+  tone?: keyof typeof TONES;
   children: React.ReactNode;
 }) {
+  const t = TONES[tone];
   return (
-    <section className="mb-4 bg-white/60 p-3">
-      <h3 className="mb-2 flex items-center gap-2 text-base font-bold tracking-wide text-ink/70 uppercase">
-        <PixelIcon name={icon} scale={2} />
+    <section className={`mb-4 p-3 short:mb-3 short:p-2 ${t.box}`}>
+      <h3
+        className={`mb-2 flex items-center gap-2 text-base font-bold tracking-wide uppercase short:mb-1 short:text-sm ${t.title}`}
+      >
+        <span className="bg-white p-1">
+          <PixelIcon name={icon} scale={2} />
+        </span>
         {title}
       </h3>
       {children}
