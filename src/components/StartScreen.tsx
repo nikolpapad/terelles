@@ -5,6 +5,7 @@ import { useState } from "react";
 import { content } from "@/lib/content";
 import { useGame } from "@/state/gameStore";
 import Logo from "./Logo";
+import MusicButton from "./MusicButton";
 import { Character, PixelIcon, TerraSprite } from "./Pixel";
 import SpeakButton from "./SpeakButton";
 
@@ -32,10 +33,13 @@ export default function StartScreen() {
       <div className="absolute top-4 left-4">
         <Logo />
       </div>
-      <button type="button" onClick={toggleFullscreen} className="px-btn px-btn-light absolute top-4 right-4 text-base">
-        <PixelIcon name="expand" scale={2} />
-        Plein écran
-      </button>
+      <div className="absolute top-4 right-4 flex gap-4">
+        <MusicButton />
+        <button type="button" onClick={toggleFullscreen} className="px-btn px-btn-light text-base">
+          <PixelIcon name="expand" scale={2} />
+          Plein écran
+        </button>
+      </div>
 
       <motion.div
         initial={{ y: -30, opacity: 0 }}

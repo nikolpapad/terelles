@@ -1,3 +1,5 @@
+import { music } from "./music";
+
 /** Read text aloud in French with the browser voice (no API needed). */
 export function speak(text: string) {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
@@ -11,11 +13,15 @@ export function speak(text: string) {
   utterance.pitch = 1.1;
   const voice = synth.getVoices().find((v) => v.lang.startsWith("fr"));
   if (voice) utterance.voice = voice;
+  utterance.onstart = () => music.duck(true);
+  utterance.onend = () => music.duck(false);
+  utterance.onerror = () => music.duck(false);
   synth.speak(utterance);
 }
 
 export function stopSpeaking() {
   if (typeof window !== "undefined" && "speechSynthesis" in window) {
     window.speechSynthesis.cancel();
+    music.duck(false);
   }
 }

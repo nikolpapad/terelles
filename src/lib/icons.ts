@@ -449,6 +449,18 @@ export const ICONS = {
     "kk......kk",
     "kkk....kkk",
   ],
+  note: [
+    "...kkkkkk.",
+    "...kkkkkk.",
+    "...k....k.",
+    "...k....k.",
+    "...k....k.",
+    "...k....k.",
+    ".kkk..kkk.",
+    "kkkk.kkkk.",
+    "kkkk.kkkk.",
+    ".kk...kk..",
+  ],
   scroll: [
     ".kkkkkkkk.",
     "kssssssssk",

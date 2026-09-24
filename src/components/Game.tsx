@@ -11,6 +11,7 @@ import EndScreen from "./EndScreen";
 import IdleGuard from "./IdleGuard";
 import JobCard from "./JobCard";
 import MarseilleMap from "./MarseilleMap";
+import MusicButton, { useMusicAutostart } from "./MusicButton";
 import { PixelIcon } from "./Pixel";
 import QuestBanner from "./QuestBanner";
 import QuestModal from "./QuestModal";
@@ -26,6 +27,7 @@ export default function Game() {
 
   const screen = useGame((s) => s.screen);
   useKeyboard();
+  useMusicAutostart();
 
   return (
     <main className="relative h-dvh w-full overflow-hidden select-none">
@@ -89,6 +91,7 @@ function Hud() {
       </div>
 
       <div className="absolute bottom-4 left-4 z-20 flex flex-col gap-4">
+        <MusicButton />
         <button type="button" className="px-btn px-btn-light h-14 w-14 !p-0" onClick={() => mapBus.zoomIn?.()} aria-label="Zoomer">
           <PixelIcon name="plus" scale={3} />
         </button>
