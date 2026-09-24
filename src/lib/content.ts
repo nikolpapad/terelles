@@ -10,6 +10,10 @@ export type Job = {
   missions: string[];
   impact: string;
   howTo: string;
+  /** First-person greeting when you talk to her. */
+  hello: string;
+  /** "Le savais-tu ?" */
+  funFact: string;
   image: string | null;
   position: Point;
 };

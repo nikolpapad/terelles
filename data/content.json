@@ -41,7 +41,9 @@
               "position": {
                 "x": 30,
                 "y": 35
-              }
+              },
+              "hello": "Salut ! Je suis data scientist du climat. Mon ordinateur m'aide à lire des millions de chiffres sur la météo.",
+              "funFact": "Grâce aux chiffres, on peut savoir qu'une canicule arrive plusieurs jours avant !"
             },
             {
               "id": "developpeuse-appli-sobre",
@@ -59,7 +61,9 @@
               "position": {
                 "x": 65,
                 "y": 28
-              }
+              },
+              "hello": "Coucou ! Je crée des applis pour ton téléphone… qui dépensent très peu d'énergie.",
+              "funFact": "Envoyer une photo, ça utilise de l'électricité ! Une appli bien faite en utilise moins."
             }
           ]
         },
@@ -83,7 +87,9 @@
               "position": {
                 "x": 35,
                 "y": 70
-              }
+              },
+              "hello": "Bonjour ! Je fabrique des petits capteurs qui surveillent l'air et l'eau, jour et nuit.",
+              "funFact": "Un capteur peut être plus petit qu'une pièce de monnaie !"
             },
             {
               "id": "roboticienne-marine",
@@ -101,7 +107,9 @@
               "position": {
                 "x": 70,
                 "y": 65
-              }
+              },
+              "hello": "Salut ! Mes robots plongent là où c'est trop profond pour nous.",
+              "funFact": "Au large de Marseille, la mer peut être profonde de plus de 2 000 mètres !"
             }
           ]
         }
@@ -138,7 +146,9 @@
               "position": {
                 "x": 28,
                 "y": 35
-              }
+              },
+              "hello": "Bonjour ! Je plonge dans les Calanques pour observer les poissons et les plantes de la mer.",
+              "funFact": "La posidonie n'est pas une algue : c'est une vraie plante, qui fait même des fleurs !"
             },
             {
               "id": "garde-parc-national",
@@ -156,7 +166,9 @@
               "position": {
                 "x": 62,
                 "y": 30
-              }
+              },
+              "hello": "Salut ! Je veille sur le Parc national des Calanques, sur la terre et sur la mer.",
+              "funFact": "C'est le premier parc d'Europe qui touche à la fois une grande ville, la terre et la mer !"
             }
           ]
         },
@@ -180,7 +192,9 @@
               "position": {
                 "x": 35,
                 "y": 72
-              }
+              },
+              "hello": "Bonjour ! J'organise le tri pour que nos déchets aient une deuxième vie.",
+              "funFact": "Une bouteille en plastique recyclée peut devenir… un pull en polaire !"
             },
             {
               "id": "animatrice-nature",
@@ -198,7 +212,9 @@
               "position": {
                 "x": 70,
                 "y": 68
-              }
+              },
+              "hello": "Coucou ! J'emmène les enfants dehors pour découvrir la nature et la protéger.",
+              "funFact": "Avec ma classe, on ramasse les déchets sur la plage avant qu'ils partent dans la mer !"
             }
           ]
         }
@@ -235,7 +251,9 @@
               "position": {
                 "x": 30,
                 "y": 32
-              }
+              },
+              "hello": "Salut ! J'invente des objets solides, qu'on peut réparer au lieu de les jeter.",
+              "funFact": "Un objet bien pensé dès le début fait moins de déchets pendant toute sa vie."
             },
             {
               "id": "styliste-mode-durable",
@@ -253,7 +271,9 @@
               "position": {
                 "x": 68,
                 "y": 30
-              }
+              },
+              "hello": "Bonjour ! Je crée des vêtements avec des tissus récupérés.",
+              "funFact": "Il faut beaucoup d'eau pour fabriquer un jean neuf. Réparer ses habits, c'est malin !"
             }
           ]
         },
@@ -277,7 +297,9 @@
               "position": {
                 "x": 33,
                 "y": 70
-              }
+              },
+              "hello": "Salut ! Je dessine des maisons qui restent fraîches l'été, même sans clim.",
+              "funFact": "Les vieilles maisons de Provence ont des murs épais et des volets : elles sont déjà malignes !"
             },
             {
               "id": "paysagiste-urbaine",
@@ -295,7 +317,9 @@
               "position": {
                 "x": 68,
                 "y": 68
-              }
+              },
+              "hello": "Coucou ! Je mets des arbres et des jardins partout dans la ville.",
+              "funFact": "Sous un arbre, il fait plusieurs degrés de moins qu'en plein soleil !"
             }
           ]
         }
@@ -332,7 +356,9 @@
               "position": {
                 "x": 30,
                 "y": 35
-              }
+              },
+              "hello": "Bonjour ! J'installe des éoliennes qui flottent sur la mer.",
+              "funFact": "Le mistral peut souffler à plus de 100 km/h : parfait pour les éoliennes !"
             },
             {
               "id": "installatrice-solaire",
@@ -350,7 +376,9 @@
               "position": {
                 "x": 68,
                 "y": 32
-              }
+              },
+              "hello": "Salut ! Je pose des panneaux solaires sur les toits de Marseille.",
+              "funFact": "Marseille est l'une des villes les plus ensoleillées de France !"
             }
           ]
         },
@@ -374,7 +402,9 @@
               "position": {
                 "x": 32,
                 "y": 70
-              }
+              },
+              "hello": "Bonjour ! J'aide les gros bateaux du port à moins polluer.",
+              "funFact": "Au port, certains bateaux se branchent à l'électricité, comme sur une prise géante !"
             },
             {
               "id": "urbaniste-mobilite",
@@ -392,7 +422,9 @@
               "position": {
                 "x": 68,
                 "y": 68
-              }
+              },
+              "hello": "Coucou ! J'imagine des rues pour les vélos, les bus et les piétons.",
+              "funFact": "Un bus plein, c'est des dizaines de voitures en moins dans la rue !"
             }
           ]
         }
@@ -429,7 +461,9 @@
               "position": {
                 "x": 30,
                 "y": 33
-              }
+              },
+              "hello": "Salut ! Je fais pousser des légumes sans produits chimiques.",
+              "funFact": "Les coccinelles mangent les pucerons : ce sont mes meilleures alliées !"
             },
             {
               "id": "hydrologue",
@@ -447,7 +481,9 @@
               "position": {
                 "x": 68,
                 "y": 35
-              }
+              },
+              "hello": "Bonjour ! Je surveille l'eau des rivières et l'eau cachée sous la terre.",
+              "funFact": "Autrefois, l'eau arrivait à Marseille par un grand canal. Le Palais Longchamp fête son arrivée !"
             }
           ]
         },
@@ -471,7 +507,9 @@
               "position": {
                 "x": 32,
                 "y": 70
-              }
+              },
+              "hello": "Salut ! Je cuisine de bons plats avec tout, même avec les restes.",
+              "funFact": "Avec du pain rassis, on peut faire du pain perdu. Miam !"
             },
             {
               "id": "apicultrice",
@@ -489,7 +527,9 @@
               "position": {
                 "x": 68,
                 "y": 68
-              }
+              },
+              "hello": "Coucou ! Je prends soin des abeilles et de leurs ruches.",
+              "funFact": "Il y a des ruches sur certains toits de Marseille !"
             }
           ]
         }
@@ -526,7 +566,9 @@
               "position": {
                 "x": 30,
                 "y": 33
-              }
+              },
+              "hello": "Salut ! J'organise des concerts et des festivals qui respectent la planète.",
+              "funFact": "Un gobelet lavable peut servir des centaines de fois !"
             },
             {
               "id": "decoratrice-spectacles-recup",
@@ -544,7 +586,9 @@
               "position": {
                 "x": 68,
                 "y": 32
-              }
+              },
+              "hello": "Bonjour ! Je construis des décors de spectacle avec des objets récupérés.",
+              "funFact": "Un vieux carton peut devenir un château sur une scène !"
             }
           ]
         },
@@ -568,7 +612,9 @@
               "position": {
                 "x": 32,
                 "y": 70
-              }
+              },
+              "hello": "Salut ! J'enquête et je raconte ce qui arrive à la nature.",
+              "funFact": "Une bonne enquête commence toujours par une question… comme les tiennes !"
             },
             {
               "id": "illustratrice-planete",
@@ -586,7 +632,9 @@
               "position": {
                 "x": 68,
                 "y": 68
-              }
+              },
+              "hello": "Coucou ! Je dessine pour expliquer l'écologie à tout le monde.",
+              "funFact": "Un dessin peut faire comprendre une idée plus vite qu'un long texte !"
             }
           ]
         }

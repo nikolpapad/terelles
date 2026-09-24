@@ -8,8 +8,8 @@ import { jobPos } from "@/lib/marseille";
 import { C, spriteCanvas } from "@/lib/pixel";
 import { getTerrain } from "@/lib/worldgen";
 
-const SW = 64;
-const SH = 34;
+const SW = 96;
+const SH = 52;
 
 /**
  * Card header: the real map spot where she works, with her holding up her
@@ -25,7 +25,7 @@ export default function JobScene({ jobId, className = "" }: { jobId: string; cla
     const ctx = c.getContext("2d")!;
     ctx.imageSmoothingEnabled = false;
     const p = jobPos(JOB_BY_ID[jobId]);
-    ctx.drawImage(getTerrain().canvas, Math.round(p.x - SW / 2), Math.round(p.y - SH + 6), SW, SH, 0, 0, SW, SH);
+    ctx.drawImage(getTerrain().detail, Math.round(p.x - SW / 2), Math.round(p.y - SH + 6), SW, SH, 0, 0, SW, SH);
     ctx.fillStyle = "rgba(255,240,200,0.18)";
     ctx.fillRect(0, 0, SW, SH);
 
@@ -39,12 +39,8 @@ export default function JobScene({ jobId, className = "" }: { jobId: string; cla
       ctx.fillStyle = "rgba(20,20,40,0.3)";
       ctx.fillRect(cx - 5, feet - 1, 10, 2);
       ctx.drawImage(characterSprite(jobLook(jobId), "down", 0), cx - CHAR_W / 2, feet - CHAR_H);
-      // arms raised
-      ctx.fillStyle = jobLook(jobId).skin;
-      ctx.fillRect(cx - 6, feet - CHAR_H + 6, 1, 3);
-      ctx.fillRect(cx + 5, feet - CHAR_H + 6, 1, 3);
       const prop = spriteCanvas(propOf(jobId), icon(propOf(jobId)));
-      ctx.drawImage(prop, cx - 5, feet - CHAR_H - 11 - bob);
+      ctx.drawImage(prop, cx - 5, feet - CHAR_H - 12 - bob);
       // sparkles
       ctx.fillStyle = C.sun;
       const s = Math.floor(t / 250) % 4;
