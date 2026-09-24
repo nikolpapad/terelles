@@ -27,7 +27,9 @@
 html,
 body {
   height: 100%;
-  overflow: hidden;
+  /* clip (not hidden) also forbids programmatic scrolling, e.g. scrollIntoView */
+  overflow: clip;
+  overscroll-behavior: none;
 }
 
 body {

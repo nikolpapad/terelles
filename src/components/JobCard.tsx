@@ -8,6 +8,7 @@ import { DISTRICT_BY_ID } from "@/lib/marseille";
 import { noEmoji, shade } from "@/lib/pixel";
 import { useGame } from "@/state/gameStore";
 import GuideBubble from "./GuideBubble";
+import JobChat from "./JobChat";
 import JobScene from "./JobScene";
 import { PixelIcon } from "./Pixel";
 import SpeakButton from "./SpeakButton";
@@ -61,7 +62,7 @@ function CardPanel({ jobId }: { jobId: string }) {
       role="dialog"
       aria-label={job.title}
     >
-      <div className="flex-1 overflow-y-auto p-4">
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4">
         <div className="mb-2 flex flex-wrap items-center gap-1.5 text-base font-semibold text-ink/70">
           <span className="inline-block h-3 w-3" style={{ background: island.color }} />
           <span>{place}</span>
@@ -96,6 +97,8 @@ function CardPanel({ jobId }: { jobId: string }) {
         </div>
 
         {cardFrom === "landing" && <GuideBubble />}
+
+        <JobChat jobId={job.id} />
 
         <Section icon="hammer" title="Ce qu'elle fait">
           <ul className="space-y-2">

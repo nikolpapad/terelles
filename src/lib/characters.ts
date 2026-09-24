@@ -3,7 +3,7 @@
  * proportions, job outfits, varied hairstyles and skin tones, 4 directions.
  */
 import { hash } from "./content";
-import { cached, makeCanvas, outline, shade } from "./pixel";
+import { cached, hexToRgb as hexRgb, makeCanvas, outline, shade } from "./pixel";
 
 export type Dir = "down" | "up" | "left" | "right";
 export type HairStyle = "short" | "long" | "bun" | "afro" | "braids" | "ponytail" | "hijab";
@@ -193,16 +193,19 @@ function draw(ctx: CanvasRenderingContext2D, L: Look, dir: "down" | "up" | "righ
 
   // ---------- legs & shoes
   if (side) {
-    const stride = frame === 0 ? 0 : 2;
+    // walk cycle seen from the side: the far (darker) leg and the near leg
+    // swap between frame 1 and frame 2, so the steps really alternate.
     const legs = L.bottom === "shorts" || L.bottom === "skirt" ? L.skin : legCol;
-    p(8 - stride, 22, 4, 8, dk(legs, 0.1));
-    p(9 + stride, 22, 4, 8, legs);
-    if (L.bottom === "shorts") {
-      p(8 - stride, 22, 4, 3, dk(L.bottomColor, 0.1));
-      p(9 + stride, 22, 4, 3, L.bottomColor);
-    }
-    p(8 - stride, 30, 5, 2, L.shoes);
-    p(9 + stride, 30, 5, 2, L.shoes);
+    const far = frame === 0 ? 8 : frame === 1 ? 6 : 11;
+    const near = frame === 0 ? 10 : frame === 1 ? 11 : 6;
+    const farLift = frame === 2 ? 1 : 0;
+    const leg = (x: number, col: string, shorts: string, lift: number) => {
+      p(x, 22, 3, 8 - lift, col);
+      if (L.bottom === "shorts") p(x, 22, 3, 3, shorts);
+      p(x, 30 - lift, 4, 2, L.shoes);
+    };
+    leg(far, dk(legs, 0.14), dk(L.bottomColor, 0.14), farLift);
+    leg(near, legs, L.bottomColor, 0);
   } else {
     const legs = L.bottom === "shorts" || L.bottom === "skirt" ? L.skin : legCol;
     p(6, 22, 4, 8 - lLift, legs);
@@ -301,8 +304,10 @@ function draw(ctx: CanvasRenderingContext2D, L: Look, dir: "down" | "up" | "righ
   // ---------- arms (swing while walking)
   const sw = frame === 0 ? 0 : frame === 1 ? 1 : -1;
   if (side) {
-    p(9, 13 + sw, 3, 8, dk(sleeve, 0.05));
-    p(9, 21 + sw, 3, 1, L.skin);
+    // the near arm swings forward/back, opposite to the near leg
+    const ax = frame === 0 ? 9 : frame === 1 ? 8 : 11;
+    p(ax, 13, 3, 8, dk(sleeve, 0.05));
+    p(ax, 21, 3, 1, L.skin);
   } else {
     p(3, 13 + sw, 2, 8, sleeve);
     p(15, 13 - sw, 2, 8, dk(sleeve, 0.1));
@@ -326,9 +331,14 @@ function draw(ctx: CanvasRenderingContext2D, L: Look, dir: "down" | "up" | "righ
 
   // face
   const eye = "#231C33";
+  const [sr, sg, sb] = hexRgb(L.skin);
+  const darkSkin = sr * 0.3 + sg * 0.59 + sb * 0.11 < 130;
+  const glint = (x: number, y: number) => darkSkin && p(x, y, 1, 1, "#FFFFFF");
   if (dir === "down") {
     p(8, 7, 1, 2, eye);
     p(11, 7, 1, 2, eye);
+    glint(8, 7);
+    glint(11, 7);
     p(7, 9, 1, 1, shade(L.skin, -0.12));
     p(12, 9, 1, 1, shade(L.skin, -0.12));
     p(9, 10, 2, 1, dk(L.skin, 0.28));
@@ -342,6 +352,7 @@ function draw(ctx: CanvasRenderingContext2D, L: Look, dir: "down" | "up" | "righ
     }
   } else if (side) {
     p(12, 7, 1, 2, eye);
+    glint(12, 7);
     p(12, 10, 1, 1, dk(L.skin, 0.28));
     p(13, 8, 1, 1, dk(L.skin, 0.1));
     if (L.glasses) {

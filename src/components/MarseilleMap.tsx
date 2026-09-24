@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { characterSprite, HERO_LOOK, jobLook, passerbyLook } from "@/lib/characters";
 import { MapEngine } from "@/lib/engine";
 import { useGame } from "@/state/gameStore";
 
@@ -13,7 +14,9 @@ export default function MarseilleMap() {
     const e = new MapEngine(ref.current!);
     engine.current = e;
     // dev-only handle for debugging from the browser console
-    if (process.env.NODE_ENV !== "production") (window as unknown as { __map?: MapEngine }).__map = e;
+    if (process.env.NODE_ENV !== "production") {
+      Object.assign(window, { __map: e, __sprites: { characterSprite, jobLook, HERO_LOOK, passerbyLook } });
+    }
     return () => e.destroy();
   }, []);
 

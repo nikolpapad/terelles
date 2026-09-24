@@ -38,6 +38,10 @@ const rand = (i: number) => {
   return x - Math.floor(x);
 };
 
+/** True when the key goes to a text field (chat), not to the game. */
+export const isTyping = (t: EventTarget | null) =>
+  t instanceof HTMLElement && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
+
 /** Commands the HUD can send to the map. */
 export const mapBus: {
   zoomIn?: () => void;
@@ -293,8 +297,19 @@ export class MapEngine {
         if (!this.interactive) return;
         w.preventDefault();
         this.target = null;
+        // Trackpad: two fingers pan the map, pinch (ctrlKey) zooms.
+        // Mouse wheel (big discrete steps, no horizontal delta) zooms.
+        const pinch = w.ctrlKey;
+        const trackpad = !pinch && w.deltaMode === 0 && (w.deltaX !== 0 || Math.abs(w.deltaY) < 40);
+        if (trackpad) {
+          this.cam.x += w.deltaX / this.cam.z;
+          this.cam.y += w.deltaY / this.cam.z;
+          this.clampCam(this.cam);
+          return;
+        }
         const before = this.toWorld(w.offsetX, w.offsetY);
-        this.cam.z = clamp(this.cam.z * Math.exp(-w.deltaY * 0.0015), this.fitZ, this.maxZ);
+        const speed = pinch ? 0.01 : 0.0015;
+        this.cam.z = clamp(this.cam.z * Math.exp(-w.deltaY * speed), this.fitZ, this.maxZ);
         const vc = this.vc;
         this.cam.x = before.x - (w.offsetX - vc.x) / this.cam.z;
         this.cam.y = before.y - (w.offsetY - vc.y) / this.cam.z;
@@ -306,7 +321,7 @@ export class MapEngine {
     const MOVE = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "w", "a", "s", "d", "z", "q"];
     this.on(window, "keydown", (e) => {
       const k = e as KeyboardEvent;
-      if (!this.canPlay()) return;
+      if (!this.canPlay() || isTyping(k.target)) return;
       const key = k.key.length === 1 ? k.key.toLowerCase() : k.key;
       if (MOVE.includes(key)) {
         k.preventDefault();
@@ -600,7 +615,7 @@ export class MapEngine {
       ctx.drawImage(this.terrain.base, 0, 0, MAP_W, MAP_H);
     }
     if (aDetail > 0) {
-      ctx.imageSmoothingEnabled = z < 1.6;
+      ctx.imageSmoothingEnabled = false;
       ctx.globalAlpha = aDetail;
       ctx.drawImage(this.terrain.detail, 0, 0);
       ctx.globalAlpha = 1;

@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useSyncExternalStore } from "react";
 import { ISLAND_BY_ID } from "@/lib/content";
-import { mapBus } from "@/lib/engine";
+import { isTyping, mapBus } from "@/lib/engine";
 import { DISTRICT_BY_ID, ZONES } from "@/lib/marseille";
 import { useGame } from "@/state/gameStore";
 import Carnet, { CarnetButton } from "./Carnet";
@@ -30,7 +30,7 @@ export default function Game() {
   useMusicAutostart();
 
   return (
-    <main className="relative h-dvh w-full overflow-hidden select-none">
+    <main className="fixed inset-0 overflow-clip overscroll-none select-none">
       {mounted && (
         <>
           <MarseilleMap />
@@ -115,7 +115,7 @@ function useKeyboard() {
         if (s.carnetOpen) s.setCarnetOpen(false);
         else if (s.questOpen) s.setQuestOpen(false);
         else if (s.selectedJobId) s.closeCard();
-      } else if (e.key === "Backspace" && s.screen === "map" && !s.carnetOpen && !s.questOpen) {
+      } else if (e.key === "Backspace" && s.screen === "map" && !s.carnetOpen && !s.questOpen && !isTyping(e.target)) {
         e.preventDefault();
         mapBus.back?.();
       }
