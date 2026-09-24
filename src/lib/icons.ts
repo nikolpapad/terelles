@@ -449,6 +449,18 @@ export const ICONS = {
     "kk......kk",
     "kkk....kkk",
   ],
+  bubble: [
+    ".kkkkkkkk.",
+    "kwwwwwwwwk",
+    "kwwwwwwwwk",
+    "kwkwkwkwwk",
+    "kwwwwwwwwk",
+    ".kkkkkkkk.",
+    "..kk......",
+    ".kk.......",
+    "..........",
+    "..........",
+  ],
   note: [
     "...kkkkkk.",
     "...kkkkkk.",

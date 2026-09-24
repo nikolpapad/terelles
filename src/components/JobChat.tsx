@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { JOB_BY_ID } from "@/lib/content";
 import { fallbackAnswer, QUESTIONS, type QuestionId } from "@/lib/jobChat";
 import { noEmoji } from "@/lib/pixel";
-import { Character } from "./Pixel";
+import { Character, PixelIcon } from "./Pixel";
 import SpeakButton from "./SpeakButton";
 import Typewriter from "./Typewriter";
 
@@ -69,8 +69,13 @@ export default function JobChat({ jobId }: { jobId: string }) {
   const lastAnswer = messages.map((m) => m.role).lastIndexOf("assistant");
 
   return (
-    <section className="mb-5">
-      <h3 className="mb-3 text-base font-bold tracking-wide text-ink/70 uppercase">Discute avec elle</h3>
+    <section className="mb-4 bg-terracotta/10 p-3 short:mb-3 short:p-2">
+      <h3 className="mb-3 flex items-center gap-2 text-base font-bold tracking-wide text-terracotta-dark uppercase short:mb-2 short:text-sm">
+        <span className="bg-white p-1">
+          <PixelIcon name="bubble" scale={2} />
+        </span>
+        Discute avec elle
+      </h3>
 
       <div className="space-y-3" aria-live="polite">
         {messages.map((m, i) =>
@@ -80,7 +85,7 @@ export default function JobChat({ jobId }: { jobId: string }) {
                 <Character jobId={jobId} scale={2} />
               </div>
               <div className="px-window flex flex-1 items-start gap-2 p-3">
-                <p className="flex-1 text-lg leading-snug">
+                <p className="flex-1 text-lg leading-snug short:text-base">
                   {i === lastAnswer && i > 0 ? <Typewriter text={m.content} speed={22} /> : m.content}
                 </p>
                 <SpeakButton text={m.content} dark />
@@ -88,7 +93,7 @@ export default function JobChat({ jobId }: { jobId: string }) {
             </div>
           ) : (
             <div key={i} className="flex items-end justify-end gap-2">
-              <p className="max-w-[80%] bg-sun px-3 py-2 text-lg leading-snug shadow-[0_3px_0_#C9962A]">{m.content}</p>
+              <p className="max-w-[80%] bg-sun px-3 py-2 text-lg leading-snug shadow-[0_3px_0_#C9962A] short:text-base">{m.content}</p>
               <div className="shrink-0">
                 <Character hero scale={2} />
               </div>
@@ -109,14 +114,14 @@ export default function JobChat({ jobId }: { jobId: string }) {
       </div>
 
       {suggestions.length > 0 && (
-        <div className="mt-4 flex flex-col gap-3">
+        <div className="mt-4 flex flex-col gap-3 short:mt-3 short:gap-2">
           {suggestions.map((q) => (
             <button
               key={q.id}
               type="button"
               disabled={loading}
               onClick={() => send(q.text, q.id)}
-              className="px-btn px-btn-light justify-start text-left text-base disabled:opacity-50"
+              className="px-btn px-btn-light min-h-11 justify-start text-left text-base disabled:opacity-50 short:text-sm"
             >
               <span className="text-terracotta">?</span> {q.text}
             </button>
