@@ -39,6 +39,8 @@ type Ui = {
 
 type Actions = {
   startAdventure: () => void;
+  /** Back to the title screen, keeping progress (handy between demos). */
+  quitToMenu: () => void;
   beginQuest: () => void;
   setFocus: (focus: Focus) => void;
   land: (jobId: string) => Promise<void>;
@@ -165,6 +167,12 @@ export const useGame = create<GameState>()(
 
       setCarnetOpen: (carnetOpen) => set({ carnetOpen }),
       setQuestOpen: (questOpen) => set({ questOpen }),
+
+      quitToMenu: () => {
+        guideRequest++;
+        stopSpeaking();
+        set({ ...initialUi, screen: "start" });
+      },
 
       reset: () => {
         guideRequest++;

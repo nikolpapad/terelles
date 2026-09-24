@@ -85,8 +85,9 @@ function Hud() {
         <div className="flex flex-1 justify-center">
           <QuestBanner />
         </div>
-        <div className="flex shrink-0 justify-end md:w-[240px]">
+        <div className="flex shrink-0 items-start justify-end gap-4 md:min-w-[240px]">
           <CarnetButton />
+          <QuitButton />
         </div>
       </div>
 
@@ -103,6 +104,22 @@ function Hud() {
         </button>
       </div>
     </>
+  );
+}
+
+function QuitButton() {
+  const quitToMenu = useGame((s) => s.quitToMenu);
+  return (
+    <button
+      type="button"
+      onClick={quitToMenu}
+      className="px-btn px-btn-light pointer-events-auto"
+      aria-label="Quitter la partie et revenir au menu"
+      title="Revenir au menu"
+    >
+      <PixelIcon name="arrow" scale={2} />
+      <span className="hidden sm:inline">Menu</span>
+    </button>
   );
 }
 
