@@ -20,21 +20,32 @@ export default function JobScene({ jobId, className = "" }: { jobId: string; cla
 
   useEffect(() => {
     const c = ref.current!;
-    c.width = SW;
-    c.height = SH;
     const ctx = c.getContext("2d")!;
-    ctx.imageSmoothingEnabled = false;
     const p = jobPos(JOB_BY_ID[jobId]);
-    ctx.drawImage(getTerrain().detail, Math.round(p.x - SW / 2), Math.round(p.y - SH + 6), SW, SH, 0, 0, SW, SH);
-    ctx.fillStyle = "rgba(255,240,200,0.18)";
-    ctx.fillRect(0, 0, SW, SH);
+    // Fixed pixel height; the width follows the box so pixels stay square
+    // and wider cards show more of the street instead of stretching it.
+    let sw = SW;
+    let base: ImageData;
+    const setup = () => {
+      const r = c.getBoundingClientRect();
+      sw = r.height > 0 ? Math.max(SH, Math.round((SH * r.width) / r.height)) : SW;
+      c.width = sw;
+      c.height = SH;
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(getTerrain().detail, Math.round(p.x - sw / 2), Math.round(p.y - SH + 6), sw, SH, 0, 0, sw, SH);
+      ctx.fillStyle = "rgba(255,240,200,0.18)";
+      ctx.fillRect(0, 0, sw, SH);
+      base = ctx.getImageData(0, 0, sw, SH);
+    };
+    setup();
+    const ro = new ResizeObserver(setup);
+    ro.observe(c);
 
     let raf = 0;
-    const base = ctx.getImageData(0, 0, SW, SH);
     const draw = (t: number) => {
       ctx.putImageData(base, 0, 0);
       const bob = Math.floor(t / 400) % 2;
-      const cx = SW / 2;
+      const cx = Math.round(sw / 2);
       const feet = SH - 3;
       ctx.fillStyle = "rgba(20,20,40,0.3)";
       ctx.fillRect(cx - 5, feet - 1, 10, 2);
@@ -56,7 +67,10 @@ export default function JobScene({ jobId, className = "" }: { jobId: string; cla
       raf = requestAnimationFrame(draw);
     };
     raf = requestAnimationFrame(draw);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+    };
   }, [jobId]);
 
   return <canvas ref={ref} className={`h-full w-full [image-rendering:pixelated] ${className}`} aria-hidden />;
